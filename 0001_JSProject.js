@@ -64,3 +64,30 @@ const getTheNearestLocation = (locations, currentCoordinates) => {
 	}
 	return nearestLocation;
 };
+
+const getIntersectionOfSortedArrays = (arr1, arr2) => {
+	const length1 = arr1.length;
+	const length2 = arr2.length;
+
+	let i = 0;
+	let j = 0;
+	const result = [];
+
+	while (i < length1 && j < length2) {
+		const firstItem = arr1[i];
+		const secondItem = arr2[j];
+		const lastCommon = result[result.length - 1];
+
+		if (firstItem === secondItem && firstItem !== lastCommon) {
+			result.push(firstItem);
+			i += 1;
+			j += 1;
+		} else if (firstItem > secondItem) {
+			j += 1;
+		}	else {
+			i += 1;
+		}
+		console.log(result);
+	}
+	return result;
+};
