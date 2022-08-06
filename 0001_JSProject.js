@@ -39,3 +39,28 @@ const isBracketStructureBalanced = (str) => {
 
 	return stack.length === 0;
 };
+
+const getDistance = ([x1, y1], [x2, y2]) => {
+	const xs = x2 - x1;
+	const ys = y2 - y1;
+
+	return Math.sqrt(xs ** 2 + ys ** 2);
+};
+
+const getTheNearestLocation = (locations, currentCoordinates) => {
+	if (locations.length === 0) return null;
+
+	let nearestLocation = locations[1];
+	const nearestLocationCoordinates = nearestLocation[1];
+	let lowestDistance = getDistance(currentCoordinates, nearestLocationCoordinates);
+
+	for (const location of locations) {
+		const locationCoordinates = location[1];
+		const distance = getDistance(currentCoordinates, locationCoordinates);
+		if (distance < lowestDistance) {
+			nearestLocation = location;
+			lowestDistance = distance;
+		}
+	}
+	return nearestLocation;
+};
